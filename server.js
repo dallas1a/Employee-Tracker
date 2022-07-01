@@ -29,6 +29,8 @@ function startPrompt() {
                     'View all roles?',
                     'View all employees?',
                     'Add new department?',
+                    'Add new employee?',
+                    'Add new role?',
                     'EXIT?'
                     ]
             }).then(function (answer) {
@@ -42,10 +44,15 @@ function startPrompt() {
                     case 'View all roles?':
                         viewDepartmentRole();
                         break;
-                        case 'Add new department?':
-                            addDepartment();
+                    case 'Add new department?':
+                            addNewDepartment();
                             break;
-                    
+                    case 'Add new employee?':
+                    addNewEmployee();
+                    break;
+                    case 'Add new role?':
+                    addNewRole();
+                    break;
                     case 'EXIT?': 
                         connection.end();
                         break;
@@ -81,7 +88,7 @@ function viewDepartmentInfo() {
     });
   }
 
-  function addDepartment() {
+  function addNewDepartment() {
     inquirer
         .prompt([
             {
@@ -105,29 +112,85 @@ function viewDepartmentInfo() {
             })
 };
 
-function addEmployee() {
+function addNewEmployee() {
     inquirer
         .prompt([
             {
-                name: 'newEmployee', 
+                name: 'newFirst', 
                 type: 'input', 
-                message: 'Which department would you like to add?'
+                message: 'What is the first name of the employee you would like to add?'
+            },
+            {
+                name: 'newLast', 
+                type: 'input', 
+                message: 'What is the last name of the employee you would like to add?'
+            },
+            {
+                name: 'newEmployeeRole', 
+                type: 'input', 
+                message: 'What is the role of this employee?'
+            },
+            {
+            name: 'managerId', 
+            type: 'input', 
+            message: 'What is the ID# of their manager?'
             }
             ]).then(function (answer) {
                 connection.query(
-                    'INSERT INTO departmentInfo SET ?',
+                    'INSERT INTO employeeInfo SET ?',
                     {
-                        dept_name: answer.newDept
+                        first_name: answer.newFirst,
+                        last_name: answer.newLast,
+                        role_id: answer.newEmployeeRole,
+                        manager_id: answer.managerId
                     });
-                var query = 'SELECT * FROM departmentInfo';
+                var query = 'SELECT * FROM employeeinfo';
                 connection.query(query, function(err, res) {
                 if(err)throw err;
-                console.log('Your department has been added! Updated List Below:');
+                console.log('Your new employee has been added! Updated List Below:');
                 console.table( res);
                startPrompt();
                 })
             })
 };
+function addNewRole() {
+    inquirer
+        .prompt([
+            {
+                name: 'newTitle', 
+                type: 'input', 
+                message: 'What is the title of the new role you would like to add?'
+            },
+            {
+                name: 'newSalary', 
+                type: 'input', 
+                message: 'What is the salary of the new role?'
+            },
+            {
+                name: 'deptID', 
+                type: 'input', 
+                message: 'What is the department ID# of this role?'
+            },
+            
+            ]).then(function (answer) {
+                connection.query(
+                    'INSERT INTO departmentRole SET ?',
+                    {
+                        title: answer.newTitle,
+                        salary: answer.newSalary,
+                        department_id: answer.deptID,
+                        
+                    });
+                var query = 'SELECT * FROM departmentRole';
+                connection.query(query, function(err, res) {
+                if(err)throw err;
+                console.log('Your new employee has been added! Updated List Below:');
+                console.table( res);
+               startPrompt();
+                })
+            })
+        };
 
-
-                    
+function updateRole(){
+    inquirer.prompt
+}
