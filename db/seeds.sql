@@ -3,18 +3,17 @@ USE employeeTracker_DB;
 
 
 
-INSERT INTO department
-    (name)
+INSERT INTO departmentInfo
+    (dept_name)
 VALUES
+("Human Resources"),
+("Payroll"),
+("Information Technology"),
+("Sales"),
+("Logistics");
 
-    ("Human Resources"),
-    ("Payroll"),
-    ("Information Technology"),
-    ("Sales")
-    ("Logistics");
 
-
-INSERT INTO role
+INSERT INTO departmentRole
     (title, salary, department_id)
 VALUES
 ("manager", 81000.00, 5),
@@ -24,11 +23,11 @@ VALUES
 ("sales person", 75000.00, 4);
 
 
-INSERT INTO employee
+INSERT INTO employeeInfo
     (first_name, last_name, role_id, manager_id)
 VALUES
 ("Tyler", "Keith", 1, NULL),
 ("Phil", "Finta", 2, 1),
 ("Clay", "Aching", 3, 2),
 ("Rob", "Cafo", 5, 2),
-("Tom", "Riddle", 4, 1),
+("Tom", "Riddle", 4, 1);
