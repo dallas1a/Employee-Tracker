@@ -24,24 +24,29 @@ function startPrompt() {
             type: 'list',
             message: 'How would you like to proceed?',
             choices: [
-                    'View all employees',
-                    'View all departments',
-                    'View all roles',
-                    'EXIT'
+                    
+                    'View all departments?',
+                    'View all roles?',
+                    'View all employees?',
+                    'Add new department?',
+                    'EXIT?'
                     ]
             }).then(function (answer) {
                 switch (answer.option) {
-                    case 'View all employees':
+                    case 'View all employees?':
                         viewEmployeeInfo();
                         break;
-                    case 'View all departments':
+                    case 'View all departments?':
                         viewDepartmentInfo();
                         break;
-                    case 'View all roles':
+                    case 'View all roles?':
                         viewDepartmentRole();
                         break;
+                        case 'Add new department?':
+                            addDepartment();
+                            break;
                     
-                    case 'EXIT': 
+                    case 'EXIT?': 
                         connection.end();
                         break;
                    
@@ -75,3 +80,54 @@ function viewDepartmentInfo() {
       startPrompt();
     });
   }
+
+  function addDepartment() {
+    inquirer
+        .prompt([
+            {
+                name: 'newDept', 
+                type: 'input', 
+                message: 'Which department would you like to add?'
+            }
+            ]).then(function (answer) {
+                connection.query(
+                    'INSERT INTO departmentInfo SET ?',
+                    {
+                        dept_name: answer.newDept
+                    });
+                var query = 'SELECT * FROM departmentInfo';
+                connection.query(query, function(err, res) {
+                if(err)throw err;
+                console.log('Your department has been added! Updated List Below:');
+                console.table( res);
+               startPrompt();
+                })
+            })
+};
+
+function addEmployee() {
+    inquirer
+        .prompt([
+            {
+                name: 'newEmployee', 
+                type: 'input', 
+                message: 'Which department would you like to add?'
+            }
+            ]).then(function (answer) {
+                connection.query(
+                    'INSERT INTO departmentInfo SET ?',
+                    {
+                        dept_name: answer.newDept
+                    });
+                var query = 'SELECT * FROM departmentInfo';
+                connection.query(query, function(err, res) {
+                if(err)throw err;
+                console.log('Your department has been added! Updated List Below:');
+                console.table( res);
+               startPrompt();
+                })
+            })
+};
+
+
+                    
