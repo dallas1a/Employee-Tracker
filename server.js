@@ -80,7 +80,7 @@ function viewDepartmentInfo() {
   }
   
   function viewEmployeeInfo() {
-    const query = "SELECT * FROM employeeInfo";
+    const query = 'SELECT * FROM employeeInfo INNER JOIN departmentRole ON employeeInfo.role_id = departmentRole.id';
     connection.query(query, function(err, res) {
       if (err) throw err;
      console.table(res);
