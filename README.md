@@ -10,4 +10,5 @@ https://watch.screencastify.com/v/wHFXmxzRHCjzcHkATJxC
 The first video doesn't include an example of the Update Role Function, this video includes just that last portion : https://watch.screencastify.com/v/XlIyDOQCxwAy690cNCFX
 
 
-![2022-07-01](https://user-images.githubusercontent.com/100645317/176984278-ab5a82ed-bc57-4a90-9e95-64494effb596.png)
+
+![2022-07-01 (2)](https://user-images.githubusercontent.com/100645317/176984351-42595d74-749a-4a8b-a330-99215dbd5ca6.png)
