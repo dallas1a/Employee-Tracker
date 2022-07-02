@@ -1,3 +1,4 @@
+/* Creates seeds to insert for initial values that are constructed in the schema using mysql*/
 
 USE employeeTracker_DB;
 

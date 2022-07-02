@@ -1,3 +1,4 @@
+/* Creates database and tables and their corresponding values using mysql*/
 DROP DATABASE IF EXISTS employeeTracker_DB;
 CREATE DATABASE employeeTracker_DB;
 
